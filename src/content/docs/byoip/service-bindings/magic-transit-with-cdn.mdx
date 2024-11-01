@@ -7,7 +7,7 @@ sidebar:
 
 ---
 
-import { Details, Example, TabItem, Tabs, GlossaryTooltip } from "~/components";
+import { Details, Example, TabItem, Tabs, GlossaryTooltip, Aside} from "~/components";
 
 [Magic Transit](/magic-transit/) customers using BYOIP can also benefit from the performance, reliability, and security that Cloudflare offers for HTTP-based applications.
 
@@ -40,8 +40,11 @@ Even though it is possible to add discrete bindings for non-contiguous CIDR bloc
 
   </Details>
 
-Once a service binding is created (or deleted), it will take four to six hours to propagate across Cloudflare's global network. Services for the IP addresses in scope will likely be disrupted during this window.
+Once a service binding is created (or deleted), it will take **four** to **six** hours to propagate across Cloudflare's global network. Services for the IP addresses in scope will likely be disrupted during this window.
 
+:::note
+This assumes that the prefix is tied to an account that has both Magic Transit and CDN properties. If not refer to [Prefix Delegations](/byoip/concepts/prefix-delegations/). The [Edge Service Bindings](#2-create-service-binding) will need to be done on the parent account as well.
+:::
 
 ## 1. Get account information
 
@@ -199,9 +202,9 @@ At this point, if an address map for a zone `example.com` specifies that Cloudfl
 4. As the HTTP response egresses the Cloudflare network back to the client side, the source IP address of the response becomes `203.0.113.100` (the IP address that the HTTP request originally landed on).
 
 </Details>
-
+:::note
 Having the same IP address as ingress IP (defined in the address map) and origin IP (listed in the DNS record) will not cause any loops.
-
+:::
 <Details header="Example" >
 
 Assuming `203.0.113.100` was also the origin IP, the DNS record would look like the following:
