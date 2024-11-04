@@ -606,7 +606,7 @@ To trust the Cloudflare root certificate in RubyGems, follow the procedure for y
 2. In a terminal, format the Cloudflare certificate for Ruby.
 
    ```sh
-   openssl x509 -inform DER -in ~/Downloads/certificate.pem -out ruby-root-ca.crt
+   openssl x509 -in ~/Downloads/certificate.pem -out ~/Downloads/ruby-root-ca.crt
    ```
 
 3. Add your RubyGems directory as an environment variable.
@@ -632,7 +632,7 @@ To trust the Cloudflare root certificate in RubyGems, follow the procedure for y
 2. In a terminal, format the Cloudflare certificate for Ruby.
 
    ```powershell
-   openssl x509 -inform DER -in %UserProfile%\Downloads\certificate.pem -out ruby-root-ca.crt
+   openssl x509 -in %UserProfile%\Downloads\certificate.pem -out %UserProfile%\Downloads\ruby-root-ca.crt
    ```
 
 3. Add your RubyGems directory as an environment variable.
