@@ -609,19 +609,25 @@ To trust the Cloudflare root certificate in RubyGems, follow the procedure for y
    openssl x509 -in ~/Downloads/certificate.pem -out ~/Downloads/ruby-root-ca.crt
    ```
 
-3. Add your RubyGems directory as an environment variable.
+3. Create a RubyGems certificate directory in your home folder.
 
    ```sh
-   export RUBY_DIR=${$(gem which rubygems)%.rb}
+   mkdir -p ~/.gem/ssl
    ```
 
 4. Copy the Cloudflare certificate to your RubyGems certificate store.
 
    ```sh
-   cp ~/Downloads/ruby-root-ca.crt $RUBY_DIR/ssl_cert/rubygems.org
+   cp ~/Downloads/ruby-root-ca.crt ~/.gem/ssl/rubygems.org.pem
    ```
 
-5. Restart RubyGems.
+5. Configure RubyGems to use the certificate.
+
+   ```sh
+   gem sources --add-trusted-cert ~/.gem/ssl/rubygems.org.pem
+   ```
+
+6. Restart RubyGems.
 
 </Details>
 
@@ -629,7 +635,7 @@ To trust the Cloudflare root certificate in RubyGems, follow the procedure for y
 
 1. Install [OpenSSL for Windows](https://slproweb.com/products/Win32OpenSSL.html).
 
-2. In a terminal, format the Cloudflare certificate for Ruby.
+2. In a PowerShell terminal, format the Cloudflare certificate for Ruby.
 
    ```powershell
    openssl x509 -in %UserProfile%\Downloads\certificate.pem -out %UserProfile%\Downloads\ruby-root-ca.crt
