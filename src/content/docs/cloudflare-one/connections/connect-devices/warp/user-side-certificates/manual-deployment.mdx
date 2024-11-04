@@ -612,7 +612,7 @@ To trust the Cloudflare root certificate in RubyGems, follow the procedure for y
 3. Add your RubyGems directory as an environment variable.
 
    ```sh
-   export RUBY_DIR=$(gem which rubygems)
+   export RUBY_DIR=${$(gem which rubygems)%.rb}
    ```
 
 4. Copy the Cloudflare certificate to your RubyGems certificate store.
