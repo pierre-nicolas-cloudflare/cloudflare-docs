@@ -12,7 +12,7 @@ import { TabItem, Tabs, Render, Type, MetaInfo } from "~/components";
 Wrangler offers a number of commands to manage your Cloudflare Workers.
 
 - [`docs`](#docs) - Open this page in your default browser.
-- [`init`](#init) - Create a new project from a variety of web frameworks and templates. (Deprecated — use `npm create cloudflare@latest` instead)
+- [`init`](#init) - Create a new project from a variety of web frameworks and templates.
 - [`generate`](#generate) - Create a Wrangler project using an existing [Workers template](https://github.com/cloudflare/worker-template).
 - [`d1`](#d1) - Interact with D1.
 - [`vectorize`](#vectorize) - Interact with Vectorize indexes.
@@ -459,6 +459,8 @@ wrangler d1 migrations apply <DATABASE_NAME> [OPTIONS]
 
 - `DATABASE_NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the D1 database you wish to apply your migrations on.
+- `--env` <Type text="string" /> <MetaInfo text="optional" />
+  - Specify which environment configuration to use for D1 binding
 - `--local` <Type text="boolean" /> <MetaInfo text="(default: true) optional" />
   - Execute any unapplied migrations on your locally persisted D1 database.
 - `--remote` <Type text="boolean" /> <MetaInfo text="(default: false) optional" />
@@ -904,10 +906,12 @@ wrangler r2 bucket create <NAME>
 
 - `NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the new R2 bucket.
+- `--location` <Type text="string" /> <MetaInfo text="optional" />
+  - The optional [location hint](/r2/reference/data-location/#location-hints) that determines geographic placement of the R2 bucket.
 - `--storage-class` <Type text="'Standard|InfrequentAccess'" /> <MetaInfo text="optional" />
   - The default storage class for objects uploaded to the bucket.
 - `--jurisdiction` <Type text="string" /> <MetaInfo text="optional" />
-  - The jurisdiction where the R2 bucket is created. Refer to [Jurisdictional Restrictions](/r2/reference/data-location/#jurisdictional-restrictions).
+  - The jurisdiction where the R2 bucket is created. Refer to [jurisdictional restrictions](/r2/reference/data-location/#jurisdictional-restrictions).
 
 ### `delete`
 
@@ -946,6 +950,8 @@ wrangler r2 bucket notification create <NAME> [OPTIONS]
   - The prefix that an object must match to emit event notifications (note: regular expressions are not supported).
 - `--suffix` <Type text="string" /> <MetaInfo text="optional" />
   - The suffix that an object must match to emit event notifications (note: regular expressions are not supported).
+- `--description` <Type text="string" /> <MetaInfo text="optional" />
+  - A description that can be used to identify the event notification rule after creation.
 
 ### `notification delete`
 
